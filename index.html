@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Suganya Arunkumar — Senior Web Designer / UI UX / Front-End</title>
+<meta name="description" content="Senior Web Designer, UI/UX and Front-End portfolio for Suganya Arunkumar." />
+<style>
+  :root{
+    --bg:#f6f7f4;
+    --surface:#ffffff;
+    --surface-2:#eef1ec;
+    --text:#111311;
+    --muted:#69706a;
+    --line:rgba(17,19,17,.12);
+    --accent:#ff5a36;
+    --accent-2:#a8ff60;
+    --accent-3:#6b5cff;
+    --shadow:0 20px 60px rgba(21,28,22,.10);
+    --radius:28px;
+    --nav:rgba(246,247,244,.78);
+  }
+  [data-theme="dark"]{
+    --bg:#0f1110;
+    --surface:#171a18;
+    --surface-2:#1e221f;
+    --text:#f4f7f4;
+    --muted:#a4ada6;
+    --line:rgba(255,255,255,.10);
+    --shadow:0 24px 70px rgba(0,0,0,.35);
+    --nav:rgba(15,17,16,.78);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    transition:background .35s,color .35s;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,90,54,.09), transparent 26%),
+      radial-gradient(circle at 90% 10%, rgba(107,92,255,.08), transparent 25%),
+      radial-gradient(circle at 70% 82%, rgba(168,255,96,.08), transparent 26%);
+  }
+  a{color:inherit;text-decoration:none}
+  button{font:inherit}
+  img{display:block;max-width:100%}
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-3),var(--accent-2));z-index:9999}
+  .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+  .nav{
+    position:sticky;top:0;z-index:1000;
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    background:var(--nav);border-bottom:1px solid var(--line)
+  }
+  .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em}
+  .brand-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--text);color:var(--bg);font-size:13px}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:700}
+  .nav-links a{color:var(--muted);transition:.2s}.nav-links a:hover{color:var(--text)}
+  .nav-actions{display:flex;align-items:center;gap:10px}
+  .icon-btn{width:42px;height:42px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
+  .btn{border:0;border-radius:999px;padding:13px 20px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:transform .2s, box-shadow .2s, background .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--text);color:var(--bg);box-shadow:var(--shadow)}
+  .btn-accent{background:var(--accent);color:white}
+  .btn-ghost{background:var(--surface);border:1px solid var(--line);color:var(--text)}
+  .mobile-toggle{display:none}
+
+  .hero{padding:92px 0 52px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:64px;align-items:end}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 7px rgba(168,255,96,.12)}
+  h1{font-size:clamp(54px,8vw,108px);line-height:.91;letter-spacing:-.07em;margin:22px 0 30px;max-width:950px}
+  .outline{color:transparent;-webkit-text-stroke:1.5px var(--text)}
+  .hero-copy{font-size:clamp(18px,2vw,23px);color:var(--muted);max-width:760px;margin-bottom:30px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hero-card::after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-3));right:-80px;bottom:-80px;filter:blur(8px);opacity:.18}
+  .hero-card .label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:900}
+  .hero-card h3{font-size:28px;line-height:1.06;letter-spacing:-.04em;margin:10px 0 14px}
+  .hero-card p{color:var(--muted);margin:0}
+  .hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+  .pill{padding:9px 12px;border-radius:999px;background:var(--surface-2);font-size:12px;font-weight:800;border:1px solid var(--line)}
+
+  .stats{padding:28px 0 90px}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface)}
+  .stat{padding:26px;border-right:1px solid var(--line)}.stat:last-child{border-right:0}
+  .stat strong{font-size:34px;letter-spacing:-.05em;display:block}.stat span{color:var(--muted);font-size:13px}
+
+  section{padding:84px 0}
+  .section-head{display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:34px}
+  .section-head h2{font-size:clamp(38px,5vw,68px);line-height:.98;letter-spacing:-.055em;margin:0}
+  .section-head p{max-width:520px;color:var(--muted);margin:0}
+  .kicker{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:900;color:var(--accent);margin-bottom:12px}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+  .filter{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:10px 15px;font-size:13px;font-weight:800;cursor:pointer;transition:.2s}
+  .filter.active,.filter:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .project{background:var(--surface);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.04);transition:.35s;cursor:pointer}
+  .project:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+  .thumb{aspect-ratio:16/10;background:var(--surface-2);overflow:hidden;position:relative}
+  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .project:hover .thumb img{transform:scale(1.04)}
+  .thumb::after{content:"View case study ↗";position:absolute;right:16px;bottom:16px;background:rgba(17,19,17,.84);color:#fff;padding:10px 13px;border-radius:999px;font-size:12px;font-weight:800;backdrop-filter:blur(8px);transform:translateY(12px);opacity:0;transition:.3s}
+  .project:hover .thumb::after{transform:translateY(0);opacity:1}
+  .project-body{padding:22px}
+  .project-top{display:flex;justify-content:space-between;gap:16px;align-items:start}
+  .project h3{margin:0;font-size:25px;letter-spacing:-.04em}
+  .project-meta{color:var(--muted);font-size:13px;margin-top:9px}
+  .tag{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);white-space:nowrap}
+
+  .process-wrap{background:var(--text);color:var(--bg);border-radius:36px;padding:48px;overflow:hidden;position:relative}
+  .process-wrap::before{content:"";position:absolute;inset:auto -140px -180px auto;width:430px;height:430px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-3));opacity:.24;filter:blur(30px)}
+  .process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:38px;position:relative;z-index:2}
+  .step{border-top:1px solid rgba(255,255,255,.25);padding-top:18px}
+  .step b{font-size:12px;color:var(--accent-2);letter-spacing:.1em}.step h4{font-size:20px;margin:10px 0 8px}.step p{font-size:13px;opacity:.72;margin:0}
+
+  .experience{display:grid;grid-template-columns:.72fr 1.28fr;gap:64px}
+  .side-card{position:sticky;top:106px;align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px}
+  .side-card h3{font-size:32px;letter-spacing:-.05em;margin:0 0 14px}.side-card p{color:var(--muted);margin:0 0 20px}
+  .timeline{border-left:1px solid var(--line);padding-left:28px}
+  .role{position:relative;padding:0 0 42px}.role:last-child{padding-bottom:0}
+  .role::before{content:"";position:absolute;left:-35px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+  .role .date{font-size:12px;text-transform:uppercase;letter-spacing:.09em;font-weight:900;color:var(--accent)}
+  .role h3{font-size:28px;letter-spacing:-.04em;margin:8px 0 3px}.role h4{margin:0 0 15px;color:var(--muted);font-size:15px}
+  .role ul{margin:0;padding-left:18px;color:var(--muted)}.role li{margin:7px 0}
+
+  .skills-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px}
+  .skill-card{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:26px;min-height:220px;position:relative;overflow:hidden}
+  .skill-card h3{font-size:24px;margin:0 0 10px;letter-spacing:-.04em}.skill-card p{margin:0;color:var(--muted)}
+  .skill-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.skill-list span{padding:9px 11px;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:800}
+  .skill-card.large{grid-row:span 2;min-height:458px;background:linear-gradient(150deg,var(--surface),var(--surface-2))}
+  .skill-orb{position:absolute;width:190px;height:190px;border-radius:50%;right:-55px;bottom:-55px;background:linear-gradient(135deg,var(--accent-3),var(--accent));filter:blur(1px);opacity:.78}
+
+  .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .cert{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px;min-height:155px}
+  .cert .year{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:900}.cert h4{font-size:17px;line-height:1.25;margin:12px 0 8px}.cert p{font-size:12px;color:var(--muted);margin:0}
+
+  .contact{padding-bottom:110px}
+  .contact-box{background:linear-gradient(130deg,var(--accent),#ff8450 45%,var(--accent-3));border-radius:38px;padding:54px;color:white;display:grid;grid-template-columns:1fr auto;gap:34px;align-items:end;box-shadow:var(--shadow)}
+  .contact-box h2{font-size:clamp(42px,6vw,78px);line-height:.93;letter-spacing:-.055em;margin:0 0 20px;max-width:850px}.contact-box p{max-width:620px;margin:0;opacity:.88}
+  .contact-box .btn{background:white;color:#111}
+  footer{border-top:1px solid var(--line);padding:26px 0 38px;color:var(--muted);font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  .modal{position:fixed;inset:0;background:rgba(5,7,6,.68);display:none;align-items:center;justify-content:center;padding:24px;z-index:3000;backdrop-filter:blur(10px)}
+  .modal.open{display:flex}.modal-card{width:min(760px,100%);max-height:88vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:0 30px 100px rgba(0,0,0,.35)}
+  .modal-close{float:right;border:1px solid var(--line);width:40px;height:40px;border-radius:14px;background:var(--surface-2);color:var(--text);cursor:pointer}.modal-card h3{font-size:38px;letter-spacing:-.05em;margin:18px 0 8px}.modal-card .modal-meta{color:var(--accent);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.modal-card p{color:var(--muted)}
+  .modal-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}.mini{padding:18px;border:1px solid var(--line);border-radius:18px}.mini b{display:block;margin-bottom:7px}.mini span{font-size:13px;color:var(--muted)}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+  .hide{display:none!important}
+
+  @media(max-width:980px){
+    .hero-grid,.experience{grid-template-columns:1fr}.hero-card{max-width:620px}.stats-grid{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .process-grid{grid-template-columns:1fr 1fr}.skills-grid{grid-template-columns:1fr 1fr}.skill-card.large{grid-row:auto;grid-column:1/-1;min-height:320px}.cert-grid{grid-template-columns:1fr 1fr}.side-card{position:relative;top:0}.contact-box{grid-template-columns:1fr}
+  }
+  @media(max-width:760px){
+    .container{width:min(100% - 24px,1180px)}.nav-links{display:none}.mobile-toggle{display:block}.hero{padding-top:60px}.work-grid,.skills-grid,.cert-grid,.modal-cols{grid-template-columns:1fr}.process-wrap{padding:30px 22px}.process-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:14px}.stats-grid{grid-template-columns:1fr 1fr}.contact-box{padding:34px 24px}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark">SA</span><span>Suganya Arunkumar</span></a>
+    <div class="nav-links">
+      <a href="#work">Work</a><a href="#process">Process</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">◐</button>
+      <a class="btn btn-primary" href="mailto:s.suganya.it@gmail.com">Let's talk ↗</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Available for senior web / UI-UX opportunities</div>
+      <h1>Senior Web <span class="outline">Designer</span><br/>who can ship.</h1>
+      <p class="hero-copy">I bridge visual design, usability and front-end production—taking websites from client discovery and structure through responsive build, testing, deployment and ongoing support.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-accent">Explore selected work ↓</a>
+        <a href="https://www.behance.net/suganyas" target="_blank" rel="noopener" class="btn btn-ghost">Behance portfolio ↗</a>
+        <a href="Suganya_Arunkumar_Resume.pdf" class="btn btn-ghost" download>Resume ↓</a>
+      </div>
+    </div>
+    <aside class="hero-card reveal">
+      <div class="label">Current focus</div>
+      <h3>UI/UX + responsive front-end + reliable web production</h3>
+      <p>Senior-level execution for healthcare, hospitality, logistics, education, automotive and service businesses.</p>
+      <div class="hero-pills"><span class="pill">Figma</span><span class="pill">HTML/CSS</span><span class="pill">JavaScript</span><span class="pill">Tailwind</span><span class="pill">PHP</span><span class="pill">Usability</span></div>
+    </aside>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats-grid reveal">
+    <div class="stat"><strong data-count="16">0+</strong><span>Years across design & web production</span></div>
+    <div class="stat"><strong data-count="50">0+</strong><span>Web projects delivered in an earlier role</span></div>
+    <div class="stat"><strong data-count="7">0</strong><span>Team members led</span></div>
+    <div class="stat"><strong>360°</strong><span>Discovery → design → build → deploy</span></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">Selected work</div><h2>Design that moves<br/>into production.</h2></div>
+      <p>Selected projects from Behance, organized to show range across healthcare, hospitality, education and B2B service websites.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="healthcare">Healthcare</button>
+      <button class="filter" data-filter="hospitality">Hospitality</button>
+      <button class="filter" data-filter="education">Education</button>
+      <button class="filter" data-filter="b2b">B2B / Services</button>
+    </div>
+    <div class="work-grid">
+      <article class="project reveal" data-category="healthcare" data-title="Dental Website" data-meta="Healthcare · Responsive website" data-summary="A healthcare website project from the Behance portfolio. The sample case-study treatment emphasizes information hierarchy, trust-building visuals, responsive layout and production-ready execution." data-behance="https://www.behance.net/gallery/99275817/Dental-Website">
+        <div class="thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/ba485c99275817.Y3JvcCwxNDAwLDEwOTUsMCwzMTQ2.jpg" alt="Dental Website project preview" /></div>
+        <div class="project-body"><div class="project-top"><div><h3>Dental Website</h3><div class="project-meta">Healthcare · Responsive website</div></div><span class="tag">Featured</span></div></div>
+      </article>
+      <article class="project reveal" data-category="healthcare" data-title="Medical Consultation" data-meta="Healthcare · UI / Web design" data-summary="A medical consultation project from Behance, presented here as a senior portfolio case study with emphasis on clarity, accessibility, service discovery and patient-focused content structure." data-behance="https://www.behance.net/gallery/156930643/Medical-Consultation">
+        <div class="thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/260a6a156930643.Y3JvcCwxMzAwLDEwMTYsMCwxNzIx.jpg" alt="Medical Consultation project preview" /></div>
+        <div class="project-body"><div class="project-top"><div><h3>Medical Consultation</h3><div class="project-meta">Healthcare · UI / Web design</div></div><span class="tag">UX</span></div></div>
+      </article>
+      <article class="project reveal" data-category="hospitality" data-title="Nepali Momos" data-meta="Food & hospitality · Website design" data-summary="A food and hospitality web project from Behance. The portfolio presentation highlights brand-led visual direction, menu discovery, conversion-focused calls to action and responsive execution." data-behance="https://www.behance.net/gallery/156930371/Nepali-Momos">
+        <div class="thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/0551a3156930371.Y3JvcCwxMzAwLDEwMTYsMCwxNTU3.jpg" alt="Nepali Momos project preview" /></div>
+        <div class="project-body"><div class="project-top"><div><h3>Nepali Momos</h3><div class="project-meta">Food & hospitality · Website design</div></div><span class="tag">Brand</span></div></div>
+      </article>
+      <article class="project reveal" data-category="education" data-title="Skillsgroom" data-meta="Education · Website design" data-summary="An education-focused project from Behance. The sample case study focuses on clean navigation, content hierarchy, learner-focused journeys and responsive presentation." data-behance="https://www.behance.net/gallery/102502453/Skillsgroom">
+        <div class="thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/3457cb102502453.Y3JvcCwxNTgzLDEyMzgsMCww.jpg" alt="Skillsgroom project preview" /></div>
+        <div class="project-body"><div class="project-top"><div><h3>Skillsgroom</h3><div class="project-meta">Education · Website design</div></div><span class="tag">EdTech</span></div></div>
+      </article>
+      <article class="project reveal" data-category="b2b" data-title="Dedicated Internet Services" data-meta="B2B technology · Website design" data-summary="A B2B technology website from Behance. The sample case-study framing highlights complex-service simplification, visual hierarchy, information architecture and technical delivery." data-behance="https://www.behance.net/gallery/93306353/Dedicated-Internet-Services">
+        <div class="thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/24121893306353.Y3JvcCwxNTgzLDEyMzgsMCww.png" alt="Dedicated Internet Services project preview" /></div>
+        <div class="project-body"><div class="project-top"><div><h3>Dedicated Internet Services</h3><div class="project-meta">B2B technology · Website design</div></div><span class="tag">B2B</span></div></div>
+      </article>
+      <article class="project reveal" data-category="b2b" data-title="Decentralized Marketing Services" data-meta="Marketing services · Web design" data-summary="A marketing-services project from Behance. The senior portfolio treatment emphasizes clear service grouping, modular UI, conversion-oriented structure and maintainable front-end patterns." data-behance="https://www.behance.net/suganyas">
+        <div class="thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/e957d293306253.Y3JvcCwxNTgzLDEyMzgsMCww.png" alt="Decentralized Marketing Services project preview" /></div>
+        <div class="project-body"><div class="project-top"><div><h3>Decentralized Marketing Services</h3><div class="project-meta">Marketing services · Web design</div></div><span class="tag">Services</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="process-wrap reveal">
+      <div class="kicker" style="color:var(--accent-2)">How I work</div>
+      <h2 style="font-size:clamp(40px,5vw,64px);letter-spacing:-.055em;line-height:.98;margin:0;max-width:800px">Senior design thinking without losing delivery speed.</h2>
+      <div class="process-grid">
+        <div class="step"><b>01</b><h4>Discover</h4><p>Business goals, users, content, constraints and technical context.</p></div>
+        <div class="step"><b>02</b><h4>Structure</h4><p>Information architecture, page hierarchy, flows and navigation.</p></div>
+        <div class="step"><b>03</b><h4>Design</h4><p>Responsive UI, visual systems, prototypes and interaction patterns.</p></div>
+        <div class="step"><b>04</b><h4>Build</h4><p>Front-end/CMS implementation with pragmatic, maintainable delivery.</p></div>
+        <div class="step"><b>05</b><h4>Validate</h4><p>Usability checks, testing, deployment, troubleshooting and iteration.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container experience">
+    <aside class="side-card reveal">
+      <div class="kicker">Experience</div>
+      <h3>16+ years across design, development and web operations.</h3>
+      <p>The differentiator is breadth: visual design plus front-end implementation, usability, deployment, maintenance and team leadership.</p>
+      <a class="btn btn-primary" href="Suganya_Arunkumar_Resume.pdf" download>Download full resume ↓</a>
+    </aside>
+    <div class="timeline">
+      <div class="role reveal"><div class="date">Dec 2021 — Present</div><h3>Senior Web Developer</h3><h4>Tas Technologies · Canada · Remote</h4><ul><li>Responsive website delivery across hospitality, banquet venues, logistics, vet clinics and healthcare.</li><li>Translate client and business requirements into production-ready websites.</li><li>Support usability testing, deployment, updates, user research and workflow analysis.</li></ul></div>
+      <div class="role reveal"><div class="date">Mar 2020 — Jun 2021</div><h3>Web Developer</h3><h4>Techitalents · Bengaluru</h4><ul><li>Front-end and back-end delivery for educational websites using PHP, JavaScript and HTML.</li><li>Owned projects from design and requirements through completion and delivery.</li></ul></div>
+      <div class="role reveal"><div class="date">May 2012 — Feb 2020</div><h3>Webmaster</h3><h4>Experions Pvt Ltd · Bengaluru</h4><ul><li>Web production, hosting, deployment, availability and maintenance across multiple industries.</li><li>Root-cause analysis and corrective action for production issues.</li><li>Led 5 designers and 2 junior coders.</li></ul></div>
+      <div class="role reveal"><div class="date">Nov 2010 — Dec 2011</div><h3>Web Designer</h3><h4>Kavinsoft Solutions · Coimbatore</h4><ul><li>Completed development, deployment and delivery of 50+ web projects.</li><li>Trained and mentored two junior team members.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">Capabilities</div><h2>Design depth.<br/>Production discipline.</h2></div><p>A portfolio for a senior designer should show not only visual taste, but also how design decisions survive implementation and real-world maintenance.</p></div>
+    <div class="skills-grid">
+      <div class="skill-card large reveal"><h3>Core strengths</h3><p>From research and workflow analysis to responsive implementation and production support.</p><div class="skill-list"><span>Responsive Web Design</span><span>UI Design</span><span>User Research</span><span>Workflow Analysis</span><span>Usability Testing</span><span>Rapid Prototyping</span><span>Website Navigation</span><span>Client Discovery</span><span>Requirements Translation</span><span>Project Delivery</span><span>Team Leadership</span><span>Junior Mentoring</span></div><div class="skill-orb"></div></div>
+      <div class="skill-card reveal"><h3>Design & prototyping</h3><p>Figma, Photoshop, InDesign and Adobe Creative Suite.</p><div class="skill-list"><span>Figma</span><span>Photoshop</span><span>InDesign</span></div></div>
+      <div class="skill-card reveal"><h3>Front-end</h3><p>Hands-on implementation for responsive client-facing experiences.</p><div class="skill-list"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>jQuery</span><span>Tailwind CSS</span></div></div>
+      <div class="skill-card reveal"><h3>CMS & development</h3><p>Practical development experience supporting production websites.</p><div class="skill-list"><span>PHP</span><span>MySQL</span><span>CMS</span></div></div>
+      <div class="skill-card reveal"><h3>Web operations</h3><p>Deployment, hosting, maintenance, testing and technical troubleshooting.</p><div class="skill-list"><span>Deployment</span><span>Hosting</span><span>Testing</span><span>Maintenance</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">Recent learning</div><h2>Still sharpening<br/>the craft.</h2></div><p>Recent professional development supports a stronger UX, Agile and AI-enabled design narrative.</p></div>
+    <div class="cert-grid">
+      <div class="cert reveal"><div class="year">Sep 2026</div><h4>Generative AI: The Future of UX UI Design</h4><p>SkillUp via Coursera</p></div>
+      <div class="cert reveal"><div class="year">Sep 2026</div><h4>UX/UI Design Fundamentals: Usability and Visual Principles</h4><p>SkillUp via Coursera</p></div>
+      <div class="cert reveal"><div class="year">Aug 2026</div><h4>Introduction to Agile Development and Scrum</h4><p>IBM Skills Network via Coursera</p></div>
+      <div class="cert reveal"><div class="year">Jul 2026</div><h4>Introduction to UX/UI Design</h4><p>IBM Skills Network via Coursera</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-box reveal">
+      <div><h2>Need a senior designer who understands the whole website lifecycle?</h2><p>Available for senior web design, UI/UX, front-end and web production opportunities.</p></div>
+      <a class="btn" href="mailto:s.suganya.it@gmail.com">s.suganya.it@gmail.com ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footer-inner"><span>© 2026 Suganya Arunkumar</span><span>Bengaluru, India · Senior Web Designer / UI-UX / Front-End</span></div></footer>
+
+<div class="modal" id="projectModal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-meta" id="modalMeta"></div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalSummary"></p>
+    <div class="modal-cols">
+      <div class="mini"><b>Senior portfolio angle</b><span>Explain the user/business problem, your design decisions, responsive behavior, production constraints and what you personally owned.</span></div>
+      <div class="mini"><b>Recommended case-study proof</b><span>Add sitemap/wireframe snippets, desktop + mobile screens, design system details, before/after improvements and final live result when available.</span></div>
+    </div>
+    <a id="modalLink" class="btn btn-primary" target="_blank" rel="noopener">View on Behance ↗</a>
+  </div>
+</div>
+
+<script>
+  const root=document.documentElement;
+  const themeToggle=document.getElementById('themeToggle');
+  const saved=localStorage.getItem('portfolio-theme');
+  if(saved) root.setAttribute('data-theme',saved);
+  themeToggle.addEventListener('click',()=>{
+    const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);localStorage.setItem('portfolio-theme',next);
+  });
+
+  const progress=document.getElementById('progress');
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement.scrollHeight-innerHeight;
+    progress.style.width=((scrollY/h)*100)+'%';
+  });
+
+  const revealObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+  const counters=document.querySelectorAll('[data-count]');
+  let counted=false;
+  const statObs=new IntersectionObserver(entries=>{
+    if(counted||!entries[0].isIntersecting)return; counted=true;
+    counters.forEach(el=>{const target=+el.dataset.count;let n=0;const step=Math.max(1,Math.ceil(target/35));const t=setInterval(()=>{n=Math.min(target,n+step);el.textContent=n+(target>=16?'+':'');if(n>=target)clearInterval(t)},32)});
+  },{threshold:.3});
+  const stats=document.querySelector('.stats-grid'); if(stats)statObs.observe(stats);
+
+  document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    document.querySelectorAll('.project').forEach(card=>card.classList.toggle('hide',filter!=='all'&&card.dataset.category!==filter));
+  }));
+
+  const modal=document.getElementById('projectModal');
+  const openModal=(card)=>{
+    document.getElementById('modalTitle').textContent=card.dataset.title;
+    document.getElementById('modalMeta').textContent=card.dataset.meta;
+    document.getElementById('modalSummary').textContent=card.dataset.summary;
+    document.getElementById('modalLink').href=card.dataset.behance;
+    modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+  };
+  document.querySelectorAll('.project').forEach(card=>card.addEventListener('click',()=>openModal(card)));
+  const closeModal=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''};
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
